@@ -16,7 +16,9 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            
+            $table->integer('networkID');
+            $table->integer('numberOfPorts');
+            $table->string('type');
         });
     }
 
