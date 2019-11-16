@@ -23,3 +23,4 @@ Route::resource('networks','NetworkController');
 Route::resource('devices','DevicesController');
 Route::resource('devicemeta','DeviceMetaController');
 Route::resource('ipaddresses','IPAddressController');
+Route::resource('addresses','AddressController');
