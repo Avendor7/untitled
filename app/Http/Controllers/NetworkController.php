@@ -14,7 +14,10 @@ class NetworkController extends Controller
      */
     public function index()
     {
-        //
+        $networks = Network::latest()->paginate(5);
+  
+        return view('networks.index',compact('networks'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -46,7 +49,8 @@ class NetworkController extends Controller
      */
     public function show(Network $network)
     {
-        //
+        return view('networks.show',compact('network'));
+        
     }
 
     /**
