@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Network;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,10 @@ class NetworkController extends Controller
     public function index()
     {
         $networks = Network::latest()->paginate(5);
-  
+
+
+
+
         return view('networks.index',compact('networks'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -25,6 +29,7 @@ class NetworkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //TODO delete this and just do the save thingy
     public function create()
     {
         return view('networks.create');
@@ -38,13 +43,20 @@ class NetworkController extends Controller
      */
     public function store(Request $request)
     {
+        $request->userid = Auth::user()->id;
         $request->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
-  
-        Networks::create($request->all());
-   
+
+        $newNetwork = new Network([
+            'userid' => Auth::user()->id,
+            'name' => $request->get('name'),
+        ]);
+
+        print(var_dump($newNetwork));
+
+        $newNetwork->save();
+
         return redirect()->route('networks.index')
                         ->with('success','Network created successfully.');
     }
@@ -58,7 +70,7 @@ class NetworkController extends Controller
     public function show(Network $network)
     {
         return view('networks.show',compact('network'));
-        
+
     }
 
     /**
@@ -81,10 +93,10 @@ class NetworkController extends Controller
      */
     public function update(Request $request, Network $network)
     {
-        
-  
+
+
         $network->update($request->all());
-  
+
         return redirect()->route('networks.index')
                         ->with('success','Product updated successfully');
     }
@@ -98,7 +110,7 @@ class NetworkController extends Controller
     public function destroy(Network $network)
     {
         $network->delete();
-  
+
         return redirect()->route('networks.index')
                         ->with('success','Network deleted successfully');
     }

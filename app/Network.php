@@ -9,4 +9,6 @@ class Network extends Model
     //
     protected $table = 'networks';
 
+    protected $fillable = ['name', 'userid'];
+
 }
