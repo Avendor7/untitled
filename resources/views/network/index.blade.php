@@ -1,4 +1,4 @@
-@extends('networks.layout')
+@extends('network.layout')
 
 @section('content')
     <div class="row">
@@ -7,7 +7,7 @@
                 <h2>Untitled Network Simulator</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('networks.create') }}"> Create New network</a>
+                <a class="btn btn-success" href="{{ route('network.create') }}"> Create New network</a>
             </div>
         </div>
     </div>
@@ -31,11 +31,11 @@
             <td>{{ $network->name }}</td>
             <td>{{ $network->detail }}</td>
             <td>
-                <form action="{{ route('networks.destroy',$network->id) }}" method="POST">
+                <form action="{{ route('network.destroy',$network->id) }}" method="POST">
 
-                    <a class="btn btn-info" href="{{ route('networks.show',$network->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('network.show',$network->id) }}">Show</a>
 
-                    <a class="btn btn-primary" href="{{ route('networks.edit',$network->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('network.edit',$network->id) }}">Edit</a>
 
                     @csrf
                     @method('DELETE')

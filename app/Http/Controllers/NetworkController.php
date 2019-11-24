@@ -20,7 +20,7 @@ class NetworkController extends Controller
 
 
 
-        return view('networks.index',compact('networks'))
+        return view('network.index',compact('networks'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -32,7 +32,7 @@ class NetworkController extends Controller
     //TODO delete this and just do the save thingy
     public function create()
     {
-        return view('networks.create');
+        return view('network.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class NetworkController extends Controller
 
         $newNetwork->save();
 
-        return redirect()->route('networks.index')
+        return redirect()->route('network.index')
                         ->with('success','Network created successfully.');
     }
 
@@ -69,7 +69,7 @@ class NetworkController extends Controller
      */
     public function show(Network $network)
     {
-        return view('networks.show',compact('network'));
+        return view('network.show',compact('network'));
 
     }
 
@@ -81,7 +81,7 @@ class NetworkController extends Controller
      */
     public function edit(Network $network)
     {
-        return view('networks.edit',compact('network'));
+        return view('network.edit',compact('network'));
     }
 
     /**
@@ -97,7 +97,7 @@ class NetworkController extends Controller
 
         $network->update($request->all());
 
-        return redirect()->route('networks.index')
+        return redirect()->route('network.index')
                         ->with('success','Product updated successfully');
     }
 
@@ -111,7 +111,7 @@ class NetworkController extends Controller
     {
         $network->delete();
 
-        return redirect()->route('networks.index')
+        return redirect()->route('network.index')
                         ->with('success','Network deleted successfully');
     }
 }

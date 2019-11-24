@@ -1,4 +1,4 @@
-@extends('networks.layout')
+@extends('network.layout')
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -6,7 +6,7 @@
                 <h2> Show network</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('networks.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('network.index') }}"> Back</a>
             </div>
         </div>
     </div>

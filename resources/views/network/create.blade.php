@@ -1,4 +1,4 @@
-@extends('networks.layout')
+@extends('network.layout')
 
 @section('content')
 <div class="row">
@@ -7,7 +7,7 @@
             <h2>Add New network</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('networks.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('network.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
     </div>
 @endif
 
-<form action="{{ route('networks.store') }}" method="POST">
+<form action="{{ route('network.store') }}" method="POST">
     @csrf
 
      <div class="row">
