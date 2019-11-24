@@ -27,7 +27,7 @@ class NetworkController extends Controller
      */
     public function create()
     {
-        //
+        return view('networks.create');
     }
 
     /**
@@ -38,7 +38,15 @@ class NetworkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+        ]);
+  
+        Networks::create($request->all());
+   
+        return redirect()->route('networks.index')
+                        ->with('success','Network created successfully.');
     }
 
     /**
@@ -61,7 +69,7 @@ class NetworkController extends Controller
      */
     public function edit(Network $network)
     {
-        //
+        return view('networks.edit',compact('network'));
     }
 
     /**
@@ -73,7 +81,12 @@ class NetworkController extends Controller
      */
     public function update(Request $request, Network $network)
     {
-        //
+        
+  
+        $network->update($request->all());
+  
+        return redirect()->route('networks.index')
+                        ->with('success','Product updated successfully');
     }
 
     /**
@@ -84,6 +97,9 @@ class NetworkController extends Controller
      */
     public function destroy(Network $network)
     {
-        //
+        $network->delete();
+  
+        return redirect()->route('networks.index')
+                        ->with('success','Network deleted successfully');
     }
 }
