@@ -1,8 +1,6 @@
 stages:
   - test
 test:
-  before_script:
-    - cd src
   script:
     - powershell -command "copy .env.testing .env"
     - powershell -command "composer install"
