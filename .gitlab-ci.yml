@@ -1,11 +1,13 @@
+image: php:7.4-cli
+
 stages:
   - test
-test:
+ 
+unit_test:
+  stage: test
   script:
-    - powershell -command "copy .env.testing .env"
-    - powershell -command "composer install"
-    - powershell -command "composer dumpautoload"
-    - powershell -command "php artisan migrate"
-    - vendor\bin\phpunit
-  allow_failure: true
-
+    - cp .env.testing .env
+    - composer install
+    - php artisan key:generate
+    - php artisan migrate
+    - vendor/bin/phpunit
