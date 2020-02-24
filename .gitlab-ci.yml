@@ -5,6 +5,8 @@ stages:
  
 unit_test:
   stage: test
+  before_script:
+    - apt install composer
   script:
     - cp .env.testing .env
     - composer install
