@@ -7,7 +7,7 @@ unit_test:
   stage: test
   before_script:
     - apt update
-    - apt install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev
+    - apt install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev -y
     - apt install composer
   script:
     - cp .env.testing .env
