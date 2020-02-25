@@ -9,7 +9,7 @@ unit_test:
     - apt update
     - apt install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev -y
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+    - docker-php-ext-install mcrypt pdo_mysql zip
   script:
     - cp .env.testing .env
     - composer install
