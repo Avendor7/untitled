@@ -6,10 +6,10 @@ stages:
 unit_test:
   stage: test
   before_script:
-    - docker-php-ext-install openssl pdo_mysql zip
     - apt update
     - apt install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev -y
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - docker-php-ext-install pdo_mysql zip
   script:
     - cp .env.testing .env
     - composer install
