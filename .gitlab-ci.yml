@@ -1,18 +1,19 @@
-image: php:7.4-fpm
+image: php:7.4-cli
 
 stages:
   - test
- 
+
 unit_test:
   stage: test
   before_script:
     - apt update
-    - apt install -qq git libpng-dev libonig-dev libxml2-dev libzip-dev zip unzip  -y
+    - apt install -qq git libpng-dev libonig-dev libxml2-dev libzip-dev zip unzip php7.4-common php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-mbstring php7.4-bcmath php7.4-imap php7.4-xml php7.4-zip -y
+
     - apt-get clean && rm -rf /var/lib/apt/lists/*
     - docker-php-ext-configure zip --with-libzip
     - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-  
+
   script:
     - cp .env.testing .env
     - composer install
