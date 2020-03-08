@@ -16,5 +16,3 @@ unit_test:
 
   script:
     - composer install
-    - php artisan migrate
-    - vendor/bin/phpunit
