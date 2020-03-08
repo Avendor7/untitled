@@ -13,6 +13,8 @@ unit_test:
 
     - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+    - rm -rf vendor/
   script:
     - composer install
+    - php artisan migrate
+    - vendor/bin/phpunit
