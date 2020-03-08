@@ -19,3 +19,4 @@ unit_test:
     - composer install
     - php artisan migrate
     - vendor/bin/phpunit
+    - php artisan dusk
