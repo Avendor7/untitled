@@ -15,6 +15,7 @@ unit_test:
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     - rm -rf vendor/
   script:
+    - cp .env.testing .env
     - composer install
     - php artisan migrate
     - vendor/bin/phpunit
