@@ -1,11 +1,10 @@
 image: php:7.4-cli
 
 stages:
-  - deployDev
+  - test
 
-deploy_dev:
-  stage: deployDev
-  image: php:7.4-apache
+unit_test:
+  stage: test
   before_script:
     - apt update
     - apt install -qq git libpng-dev libonig-dev libxml2-dev libzip-dev zip unzip -y
@@ -16,8 +15,8 @@ deploy_dev:
     - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     - rm -rf vendor/
   script:
-    - cp -rf . /var/www/html
-    - cd /var/www/html
-    - cp .env.example .env
+    - cp .env.testing .env
     - composer install
     - php artisan migrate
+    - vendor/bin/phpunit
+    - php artisan dusk
