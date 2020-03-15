@@ -29,41 +29,7 @@
     <nav class="navbar  navbar-dark sticky-top bg-primary flex-md-nowrap navbar-expand-md p-0">
         <a href="/" class="navbar-brand col-sm-3 col-md-2 mr-0">Untitled Network Simulator</a>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav pl-2">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">Profile</a>
 
-            </div>
-            <div class="navbar-nav pr-2">
-                @if (Auth::guest())
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Register</a></li>
-                @else
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a class="nav-link" href="{{ url('/logout') }}"
-                                   onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-            </div>
-        </div>
     </nav>
     <div class="container-fluid">
         <div class="row">
@@ -141,13 +107,46 @@
                         </li>
                     </ul>
                 </div>
+                <div class="footer">
+                    <div class="navbar-nav pr-2">
+                        @if (Auth::guest())
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Register</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a class="nav-link" href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </div>
+                </div>
             </nav>
+
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
                     @yield('content')
             </main>
+-
         </div>
     </div>
+
 </div>
 
 </body>

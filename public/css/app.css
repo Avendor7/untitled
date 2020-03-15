@@ -170,13 +170,13 @@ sup {
 }
 
 a {
-  color: #00bc8c;
+  color: #ced4da;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #007053;
+  color: #a2aeb9;
   text-decoration: underline;
 }
 
@@ -3312,12 +3312,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #00bc8c;
+  color: #ced4da;
   text-decoration: none;
 }
 
 .btn-link:hover {
-  color: #007053;
+  color: #a2aeb9;
   text-decoration: underline;
 }
 
@@ -10915,21 +10915,10 @@ body {
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
 }
 
 .sidebar .nav-link .feather {
   margin-right: 4px;
-  color: #999;
-}
-
-.sidebar .nav-link.active {
-  color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
 }
 
 .sidebar-heading {
@@ -10969,6 +10958,15 @@ body {
 /*
  * Utilities
  */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background-color: #375a7f;
+}
 
 .border-top {
   border-top: 1px solid #e5e5e5;
