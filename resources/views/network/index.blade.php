@@ -47,6 +47,5 @@
         @endforeach
     </table>
 
-    {!! $networks->links() !!}
 
 @endsection
