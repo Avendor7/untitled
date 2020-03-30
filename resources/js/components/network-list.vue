@@ -37,8 +37,12 @@
 </template>
 
 <script>
+    import feather from 'feather-icons';
     export default {
-        name: "network-list"
+        name: "network-list",
+        mounted() {
+            feather.replace();
+        }
     }
 </script>
 
