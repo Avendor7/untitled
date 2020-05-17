@@ -1,59 +1,49 @@
-version: '3'
+version: "3.7"
 services:
-
-  #PHP Service
   app:
     build:
-      context: .
+      args:
+        user: untitled
+        uid: 1000
+      context: ./
       dockerfile: Dockerfile
-    image: digitalocean.com/php
+    image: untitledapp
     container_name: app
     restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www
+    working_dir: /var/www/
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - app-network
+      - untitled
 
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - app-network
-
-  #MySQL Service
   db:
     image: mysql:5.7
     container_name: db
-    volumes:
-        - dbdata:/var/lib/mysql
-    restart: always
+    restart: unless-stopped
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: untitled
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./dbdata:/var/lib/mysql/
     networks:
-        - app-network
-#Docker Networks
+      - untitled
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+      - ./dockercompose/nginx/:/etc/nginx/conf.d/
+    networks:
+      - untitled
+
 networks:
-  app-network:
+  untitled:
     driver: bridge
-#Volumes
-volumes:
-  dbdata:
-    driver: local
