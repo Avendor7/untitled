@@ -13,7 +13,8 @@
 
 
 Auth::routes();
-
+Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+/*
 Route::get('/', 'NetworkController@index')->name('network');
 
 Route::resource('network','NetworkController');
@@ -21,3 +22,4 @@ Route::resource('devices','DevicesController');
 Route::resource('devicemeta','DeviceMetaController');
 Route::resource('ipaddresses','IPAddressController');
 Route::resource('addresses','AddressController');
+*/
