@@ -27,6 +27,7 @@
 </head>
 <body>
 <div id="app">
+    <router-view></router-view>
     <nav class="navbar  navbar-dark sticky-top bg-primary flex-md-nowrap navbar-expand-md p-0">
         <a href="/" class="navbar-brand col-sm-3 col-md-2 mr-0">Untitled Network Simulator</a>
 
