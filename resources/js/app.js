@@ -6,17 +6,19 @@
 
 require('./bootstrap');
 
-import Vue from 'vue'
+//import Vue from 'vue'
+//import VueRouter from 'vue-router'
+
+window.Vue = require('vue');
+
+//Import View Router
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 
-Vue.use(VueRouter)
-
-import App from './views/App';
-import Home from './views/Home';
-
+import App from './views/App.vue'
+import Home from './views/Home.vue'
+console.log("Hello world");
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -30,6 +32,9 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    components: { App },
     router,
+    components: { App },
+
 });
+
+export default app;
